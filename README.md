@@ -149,7 +149,59 @@ origin-https	https://github.com/andrey-borue/devops-netology.git (push)
 1. Перейдите на страницу просмотра тегов в GitHab (и в других репозиториях) и посмотрите, чем отличаются созданные теги. 
     * в GitHub — https://github.com/YOUR_ACCOUNT/devops-netology/releases;
     * в GitLab — https://gitlab.com/YOUR_ACCOUNT/devops-netology/-/tags;
-    * в Bitbucket — список тегов расположен в выпадающем меню веток на отдельной вкладке. 
+    * в Bitbucket — список тегов расположен в выпадающем меню веток на отдельной вкладке.
+  
+
+- Создадим lightweight tag v0.0 на последнем коммите и запушим его во все удаленные (и origin).
+
+![9](img/9.JPG)   
+
+- Выше я ввел еще и хэш последнего коммита, но, судя по всему, можно было обойтись и без этого, т.к. мы тэгируем последний коммит. Теперь пушим.
+
+```
+root@git:/home/vagrant/devops_netology# git push --tags
+Total 0 (delta 0), reused 0 (delta 0)
+To bitbucket.org:luckynuckywinkel-1/devops_netology.git
+ * [new tag]         v0.0 -> v0.0
+```
+
+- Видим, что таким образом он запушил тэг только в битбакер. Вероятно, от того, что он у меня работает через ssh, т.к. через обычный пароль я туда так и не пролез. Что ж. На оставшиеся пушим руками:
+
+```
+root@git:/home/vagrant/devops_netology# git push --tags gitlab
+Username for 'https://gitlab.com': luckynuckywinkel
+Password for 'https://luckynuckywinkel@gitlab.com':
+Total 0 (delta 0), reused 0 (delta 0)
+To https://gitlab.com/luckynuckywinkel/devops_netology.git
+ * [new tag]         v0.0 -> v0.0
+```
+
+```
+root@git:/home/vagrant/devops_netology# git push --tags origin
+Username for 'https://github.com': luckynuckywinkel
+Password for 'https://luckynuckywinkel@github.com':
+Total 0 (delta 0), reused 0 (delta 0)
+To https://github.com/luckynuckywinkel/devops_netology.git
+ * [new tag]         v0.0 -> v0.0
+```
+
+- Создадим annotated tag и запушим его по аналогии с легковесным:
+
+```
+root@git:/home/vagrant/devops_netology# git tag -a v0.1 -m "This is a test of annotate commit"
+```
+
+![10](img/10.JPG)   
+
+- Посмотрим, что там в вебе:
+
+![11](img/11.JPG)   
+
+![12](img/12.JPG)   
+
+![13](img/13.JPG)   
+
+- Замечу, что все платформы имеют разное отображение тэгов. В гитлабе, на мой взгляд, все нагляднее.
 
 ## Задание 3. Ветки 
 
